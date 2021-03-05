@@ -1,4 +1,4 @@
-# NGINX Configuration Testing suite
+# NGINX Configuration Testing Suite
 This is a quick setup designed to test changes to nginx locally before making those changes elsewhere.
 
 ## Features

@@ -1,0 +1,25 @@
+version: '2'
+services:
+  proxy:
+    image: nginx
+    volumes: 
+      - ./nginx/my-site.conf:/etc/nginx/default.conf
+    ports:
+    - 8881:8881
+    networks:
+      - api.network
+  api:
+    build: ./api/
+    networks:
+      - api.network
+  locust:
+    image: locustio/locust
+    ports:
+      - 8119:8089
+    volumes:
+      - ./locust/:/mnt/locust
+    command: -f /mnt/locust/locustfile.py -H http://proxy:8881
+    networks:
+      - api.network
+networks:
+  api.network:
